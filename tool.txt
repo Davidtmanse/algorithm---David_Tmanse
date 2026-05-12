@@ -1,0 +1,18 @@
+发现在中国国内的环境下想要使用ssh连接方式连接github，在github代码仓库上进行操作会遇到一些网络上的问题。
+
+
+(问题：国内运营商/墙把github的22端口(标准ssh)封得很死) - 将GitHub SSH 走443端口(HTTPS端口)
+以下我提供一些我成功在github上连接的做法：
+1.当我们成功将ssh密钥上传至github的setting里ssh密钥后。
+2.在bash执行 -> nano ~/.ssh/config
+3.填写以下内容: 
+Host github.com
+	Hostname ssh.github.com
+	Port 443
+	User git
+	IdentityFile ~/.ssh/id_rsa
+3.填写好后，保存退出按键为：Ctrl + o -> 回车 -> Ctrl + x
+4.测试连接：ssh -T git@github.com
+
+
+如果成功了会显示“Hi 你的用户名！You've successfully authenticated.....”
